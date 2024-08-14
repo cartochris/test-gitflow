@@ -1,0 +1,19 @@
+name: Deploy to Test Environment
+
+on:
+  workflow_dispatch:
+    inputs:
+      feature-branch:
+        description: 'Feature branch to deploy'
+        required: true
+        default: 'feature/my-feature'
+
+jobs:
+  deploy-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.feature-branch }}
