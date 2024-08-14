@@ -1,2 +1,3 @@
 this is file2
 file2 is updated again
+and we update file2 again here
