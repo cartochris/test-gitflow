@@ -1,0 +1,33 @@
+# .github/workflows/deploy-to-test-and-prod.yml
+name: Deploy to Test and Prod
+
+on:
+  push:
+    tags:
+      - 'v*.*.*-rc*' # Trigger for release candidate tags (for test environment)
+      - 'v*.*.*'     # Trigger for production tags (for prod environment)
+
+jobs:
+  deploy-test:
+    if: contains(github.ref, '-rc')
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Simulate Deployment to Test
+      run: echo "Simulate deployment to environment TEST"
+
+  deploy-prod:
+    if: "!contains(github.ref, '-rc')" # This job will only run if the tag is not a release candidate
+    needs: deploy-test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Await Manual Approval
+      uses: chrnorm/deployment-action@v1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ENVIRONMENT: production
+
+    - name: Simulate Deployment to Prod
+      run: echo "Simulate deployment to environment PROD"
