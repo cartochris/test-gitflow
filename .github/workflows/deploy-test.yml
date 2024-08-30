@@ -1,0 +1,18 @@
+# .github/workflows/deploy-to-test.yml
+name: Deploy to Test
+
+on:
+  push:
+    tags:
+      - 'v*.*.*-rc*' # This pattern matches release candidate tags
+
+jobs:
+  deploy-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Simulate Deployment to Test
+      run: echo "Simulate deployment to environment TEST"
