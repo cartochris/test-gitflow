@@ -3,5 +3,6 @@ and we update file2 again here
 here is a new line on the 3rd row
 
 extra line
+extra line 2
 
 just making some more changes to this file
