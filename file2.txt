@@ -2,5 +2,6 @@ file2 is updated again
 and we update file2 again here
 here is a new line on the 3rd row
 
+extra line
 
 just making some more changes to this file
